@@ -15,6 +15,10 @@ public class Url {
     @Column(name = "short_url", nullable = false, unique=true)
     private String shortUrl;
 
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
+
     public long getId() {
         return id;
     }
@@ -37,5 +41,13 @@ public class Url {
 
     public void setShortUrl(String shortUrl) {
         this.shortUrl = shortUrl;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

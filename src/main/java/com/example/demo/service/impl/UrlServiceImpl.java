@@ -24,7 +24,7 @@ public class UrlServiceImpl implements UrlService {
 
     @Override
     public Url getUrlById(long id) {
-        return urlRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "Id", id));
+        return urlRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Url", "Id", id));
     }
 
     @Override

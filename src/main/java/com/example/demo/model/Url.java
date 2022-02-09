@@ -16,7 +16,7 @@ public class Url {
     private String shortUrl;
 
     @ManyToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "userId", nullable = false)
     private User user;
 
     public long getId() {

@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface UrlRepository extends JpaRepository<Url, Long> {
     public List<Url> findAllByUser(User user);
+    public Url findByShortUrl(String shortUrl);
     public void deleteAllByUser(User user);
 }

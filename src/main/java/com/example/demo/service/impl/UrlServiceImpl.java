@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.exception.DuplicateUrlException;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.Url;
 import com.example.demo.model.User;
@@ -25,6 +26,9 @@ public class UrlServiceImpl implements UrlService{
     public Url saveUrl(Url url) {
         User user = userRepository.findById(url.getUser().getId()).orElseThrow(() -> new ResourceNotFoundException("User", "Id", url.getUser().getId()));
         url.setUser(user);
+        if (urlRepository.findByShortUrl(url.getShortUrl()) != null){
+            throw new DuplicateUrlException(url.getShortUrl());
+        }
         return urlRepository.save(url);
     }
 

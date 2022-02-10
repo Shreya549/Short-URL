@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="user")
@@ -49,4 +51,5 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }

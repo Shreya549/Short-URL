@@ -1,8 +1,12 @@
 package com.example.demo.repository;
 
 import com.example.demo.model.Url;
+import com.example.demo.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UrlRepository extends JpaRepository<Url, Long> {
+import java.util.List;
 
+public interface UrlRepository extends JpaRepository<Url, Long> {
+    public List<Url> findAllByUser(User user);
+    public void deleteAllByUser(User user);
 }

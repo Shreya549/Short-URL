@@ -1,5 +1,9 @@
 package com.example.demo.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.web.bind.annotation.DeleteMapping;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,7 +19,7 @@ public class Url {
     @Column(name = "short_url", nullable = false, unique=true)
     private String shortUrl;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId", nullable = false)
     private User user;
 

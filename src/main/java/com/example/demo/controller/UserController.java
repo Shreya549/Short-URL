@@ -1,10 +1,13 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Url;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -30,6 +33,11 @@ public class UserController {
     @RequestMapping(value = "/get/email")
     public ResponseEntity<User> getUserByEmail(@RequestParam(value = "email") String email) {
         return new ResponseEntity<User>(userService.getUserByEmail(email), HttpStatus.OK);
+    }
+
+    @GetMapping("/get/all/{id}")
+    public ResponseEntity<List<Url>> getAllUrl(@PathVariable("id") long id){
+        return new ResponseEntity<List<Url>>(userService.getAllUrl(id), HttpStatus.OK);
     }
 
     @PutMapping("/edit/{id}")

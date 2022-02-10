@@ -1,18 +1,25 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.model.Url;
 import com.example.demo.model.User;
+import com.example.demo.repository.UrlRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
+    private UrlRepository urlRepository;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, UrlRepository urlRepository) {
         super();
         this.userRepository = userRepository;
+        this.urlRepository = urlRepository;
     }
 
     @Override
@@ -36,6 +43,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<Url> getAllUrl(long id) {
+        User existingUser = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "Id", id));
+        return urlRepository.findAllByUser(existingUser);
+    }
+
+
+    @Override
     public User updateUserById(User user, long id) {
         User existingUser = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "Id", id));
         existingUser.setFirstName(user.getFirstName());
@@ -45,14 +59,11 @@ public class UserServiceImpl implements UserService {
         return existingUser;
     }
 
-    @Override
-    public User updateUserByEmail(User user, String email) {
-        return null;
-    }
-
+    @Transactional
     @Override
     public void deleteUser(long id) {
-        userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "Id", id));
+        User existingUser = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "Id", id));
+        urlRepository.deleteAllByUser(existingUser);
         userRepository.deleteById(id);
     }
 }

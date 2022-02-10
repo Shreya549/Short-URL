@@ -13,8 +13,8 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private UserRepository userRepository;
-    private UrlRepository urlRepository;
+    private final UserRepository userRepository;
+    private final UrlRepository urlRepository;
 
     public UserServiceImpl(UserRepository userRepository, UrlRepository urlRepository) {
         super();

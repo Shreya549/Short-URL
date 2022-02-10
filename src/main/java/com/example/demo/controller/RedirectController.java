@@ -16,7 +16,7 @@ import java.net.URISyntaxException;
 @RequestMapping("/")
 public class RedirectController {
 
-    private UrlService urlService;
+    private final UrlService urlService;
 
     public RedirectController(UrlService urlService) {
         super();

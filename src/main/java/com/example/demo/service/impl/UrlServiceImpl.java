@@ -14,8 +14,8 @@ import java.util.UUID;
 
 @Service
 public class UrlServiceImpl implements UrlService {
-    private UrlRepository urlRepository;
-    private UserRepository userRepository;
+    private final UrlRepository urlRepository;
+    private final UserRepository userRepository;
 
     public UrlServiceImpl(UrlRepository urlRepository, UserRepository userRepository) {
         super();

@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface UrlRepository extends JpaRepository<Url, Long> {
-    public List<Url> findAllByUser(User user);
-    public Url findByShortUrl(String shortUrl);
-    public void deleteAllByUser(User user);
+    List<Url> findAllByUser(User user);
+    Url findByShortUrl(String shortUrl);
+    void deleteAllByUser(User user);
 }

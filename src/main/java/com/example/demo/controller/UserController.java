@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/get/id")
-    public ResponseEntity<User> getUserById(@RequestParam(value = "id") long id) {
+    public ResponseEntity<User> getUserById(@RequestParam(value = "id") String id) {
         return new ResponseEntity<User>(userService.getUserById(id), HttpStatus.OK);
     }
 
@@ -36,17 +36,17 @@ public class UserController {
     }
 
     @GetMapping("/get/all/{id}")
-    public ResponseEntity<List<Url>> getAllUrl(@PathVariable("id") long id){
+    public ResponseEntity<List<Url>> getAllUrl(@PathVariable("id") String id){
         return new ResponseEntity<List<Url>>(userService.getAllUrl(id), HttpStatus.OK);
     }
 
     @PutMapping("/edit/{id}")
-    public ResponseEntity<User> updateUserById(@PathVariable("id") long id, @RequestBody User user) {
+    public ResponseEntity<User> updateUserById(@PathVariable("id") String id, @RequestBody User user) {
         return new ResponseEntity<User>(userService.updateUserById(user, id), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable("id") long id) {
+    public ResponseEntity<String> deleteUser(@PathVariable("id") String id) {
         userService.deleteUser(id);
         return new ResponseEntity<String>("User deleted successfully", HttpStatus.OK);
     }

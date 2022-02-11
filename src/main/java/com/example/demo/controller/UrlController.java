@@ -31,19 +31,19 @@ public class UrlController {
 
     //get url
     @GetMapping("/get/{id}")
-    public ResponseEntity<Url> getUrlById(@PathVariable("id") long id){
+    public ResponseEntity<Url> getUrlById(@PathVariable("id") String id){
         return new ResponseEntity<Url>(urlService.getUrlById(id), HttpStatus.OK);
     }
 
     //update url
     @PutMapping("edit/{id}")
-    public ResponseEntity<Url> updateUrlById(@PathVariable("id") long id, @RequestBody Url url){
+    public ResponseEntity<Url> updateUrlById(@PathVariable("id") String id, @RequestBody Url url){
         return new ResponseEntity<Url>(urlService.updateUrl(url, id), HttpStatus.OK);
     }
 
     //delete url
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<String> deleteUrl(@PathVariable("id") long id){
+    public ResponseEntity<String> deleteUrl(@PathVariable("id") String id){
         urlService.deleteUrl(id);
         return new ResponseEntity<String>("Url deleted successfully", HttpStatus.OK);
     }

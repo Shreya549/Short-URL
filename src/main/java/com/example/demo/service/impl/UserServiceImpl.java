@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(long id) {
+    public User getUserById(String id) {
         return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "Id", id));
     }
 
@@ -43,14 +43,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Url> getAllUrl(long id) {
+    public List<Url> getAllUrl(String id) {
         User existingUser = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "Id", id));
         return urlRepository.findAllByUser(existingUser);
     }
 
 
     @Override
-    public User updateUserById(User user, long id) {
+    public User updateUserById(User user, String id) {
         User existingUser = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "Id", id));
         existingUser.setFirstName(user.getFirstName());
         existingUser.setLastName(user.getLastName());
@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public void deleteUser(long id) {
+    public void deleteUser(String id) {
         User existingUser = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "Id", id));
         urlRepository.deleteAllByUser(existingUser);
         userRepository.deleteById(id);

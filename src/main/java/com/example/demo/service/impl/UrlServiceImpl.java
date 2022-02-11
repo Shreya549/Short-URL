@@ -45,7 +45,7 @@ public class UrlServiceImpl implements UrlService {
     }
 
     @Override
-    public Url getUrlById(long id) {
+    public Url getUrlById(String id) {
         return urlRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Url", "Id", id));
     }
 
@@ -59,7 +59,7 @@ public class UrlServiceImpl implements UrlService {
     }
 
     @Override
-    public Url updateUrl(Url url, long id) {
+    public Url updateUrl(Url url, String id) {
         Url existingUrl = urlRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Url", "Id", id));
         existingUrl.setActualUrl(url.getActualUrl());
         existingUrl.setShortUrl(url.getShortUrl());
@@ -69,7 +69,7 @@ public class UrlServiceImpl implements UrlService {
     }
 
     @Override
-    public void deleteUrl(long id) {
+    public void deleteUrl(String id) {
         urlRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "Id", id));
         urlRepository.deleteById(id);
     }

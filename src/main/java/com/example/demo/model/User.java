@@ -3,13 +3,14 @@ package com.example.demo.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name="user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(name = "id", unique = true, nullable = false)
+    private String id = String.valueOf(UUID.randomUUID());
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -20,11 +21,11 @@ public class User {
     @Column(name = "email", nullable = false, unique=true)
     private String email;
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

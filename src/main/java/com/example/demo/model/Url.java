@@ -5,13 +5,14 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name="url")
 public class Url {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(name = "id", unique = true, nullable = false)
+    private String id = String.valueOf(UUID.randomUUID());
 
     @Column(name = "actual_url", nullable = false)
     private String actualUrl;
@@ -23,11 +24,11 @@ public class Url {
     @JoinColumn(name = "userId", nullable = false)
     private User user;
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

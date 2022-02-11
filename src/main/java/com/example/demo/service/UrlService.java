@@ -4,8 +4,8 @@ import com.example.demo.model.Url;
 
 public interface UrlService {
     Url saveUrl(Url url);
-    Url getUrlById(long id);
-    Url updateUrl(Url url, long id);
+    Url getUrlById(String id);
+    Url updateUrl(Url url, String id);
     String getActualUrl(String shortUrl);
-    void deleteUrl(long id);
+    void deleteUrl(String id);
 }

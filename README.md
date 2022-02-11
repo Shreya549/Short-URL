@@ -1,2 +1,2 @@
 # Short-URL
-An URL Shortner in Spring Boot
+An URL Shortener in Spring Boot.
